@@ -30,6 +30,6 @@ A simple Paytm clone project with user authentication (signup, signin) and the a
    ```bash
    git clone https://github.com/ehconitin/simple-paytm-clone.git
    cd simple-paytm-clone
+   ```
 
    backend should be hosted at http://localhost:3000
-   ```
