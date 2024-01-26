@@ -1,6 +1,6 @@
 import { useSetRecoilState } from "recoil";
 
-import Modal from "./sendMoneyModal";
+import SendMoneyModal from "./sendMoneyModal";
 import { useEffect } from "react";
 
 export function DBUserComponent({ firstName, lastName, id }) {
@@ -18,7 +18,7 @@ export function DBUserComponent({ firstName, lastName, id }) {
         </div>
       </div>
       <div className="pr-6 flex items-center  justify-center">
-        <Modal id={id} firstName={firstName} lastName={lastName} />
+        <SendMoneyModal id={id} firstName={firstName} lastName={lastName} />
       </div>
     </div>
   );

@@ -141,5 +141,15 @@ router.get("/bulk", async function (req, res) {
   });
 });
 
-router.get("/currentUser", async function (req, res) {});
+router.get("/currentUser", authMiddleware, async function (req, res) {
+  const user = await User.findOne({
+    _id: req.userId,
+  });
+
+  if (!user) {
+    return res.status(404).send("user not found");
+  }
+
+  return res.status(200).json(user);
+});
 module.exports = router;

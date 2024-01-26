@@ -65,8 +65,37 @@ const transfer = (to, amount) => {
       }
     )
     .then((response) => {
-      console.log(response);
+      //console.log(response);
+      return response.data;
     });
+};
+
+const currentUser = () => {
+  const authHeaders = authHeader();
+  return axios
+    .get("http://localhost:3000/api/v1/user/currentUser", {
+      headers: authHeaders,
+    })
+    .then((response) => {
+      return response.data;
+    });
+};
+
+const update = (firstName, lastName, password) => {
+  const authHeaders = authHeader();
+  return axios
+    .put(
+      "http://localhost:3000/api/v1/user/",
+      {
+        firstName,
+        lastName,
+        password,
+      },
+      {
+        headers: authHeaders,
+      }
+    )
+    .then((response) => {});
 };
 const authService = {
   signup,
@@ -74,6 +103,8 @@ const authService = {
   balance,
   filterUsers,
   transfer,
+  currentUser,
+  update,
 };
 
 export default authService;

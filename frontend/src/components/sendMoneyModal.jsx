@@ -3,7 +3,7 @@ import authService from "../services/authService";
 import Successful from "./successful";
 import { useNavigate } from "react-router-dom";
 
-export default function Modal({ id, firstName, lastName }) {
+export default function SendMoneyModal({ id, firstName, lastName }) {
   const [showModal, setShowModal] = useState(false);
   const [amount, setAmount] = useState(0);
 
@@ -11,14 +11,20 @@ export default function Modal({ id, firstName, lastName }) {
     try {
       await authService.transfer(id, amount).then(
         (response) => {
+          if (response) {
+            alert("Payment successful");
+          }
           window.location.reload();
         },
         (error) => {
-          console.log("error");
+          console.log("error1");
+          if (error) {
+            alert("Insufficient Balance");
+          }
         }
       );
     } catch (err) {
-      console.log("error");
+      console.log("error2");
     }
   }
 
