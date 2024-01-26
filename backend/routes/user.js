@@ -100,7 +100,7 @@ router.put("/", authMiddleware, async function (req, res) {
       message: "Invalid inputs",
     });
   }
-  console.log(req.body, req.userId);
+
   await User.updateOne(
     {
       _id: req.userId,
