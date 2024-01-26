@@ -1,8 +1,11 @@
 const mongoose = require("mongoose");
 const { Schema } = require("zod");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 mongoose.connect(
-  "mongodb+srv://ehconitin:MktPTldYAQf6BzIG@cluster0.x0yuwpe.mongodb.net/paytm"
+  `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.x0yuwpe.mongodb.net/paytm`
 );
 const userSchema = new mongoose.Schema({
   firstName: String,
