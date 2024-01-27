@@ -35,11 +35,12 @@ export function DashboardComponent() {
           setCurrUserFirstName(response.firstName);
         },
         (error) => {
-          console.log("error");
+          console.log("error1");
+          navigate("/signup");
         }
       );
     } catch (err) {
-      console.log("error");
+      console.log("error2");
     }
   }
 
@@ -68,14 +69,15 @@ export function DashboardComponent() {
     navigate("/signin");
   }
   useEffect(() => {
+    getCurrUser();
+  }, []);
+
+  useEffect(() => {
     getUsers();
   }, [filter]);
   useEffect(() => {
     getAmount();
   }, []);
-  useEffect(() => {
-    getCurrUser();
-  }, [currUserFirstName]);
 
   return (
     <div className=" p-4 relative bg-red-400 bg-opacity-25 flex justify-center  min-h-screen">
@@ -120,7 +122,7 @@ export function DashboardComponent() {
         </div>
         <div className="p-6 flex">
           <div>Your Balance</div>
-          <div className="ml-4">{amount}</div>
+          <div className="ml-4">₹ {amount}</div>
         </div>
         <div className="p-6 pt-0 pb-4">Users</div>
         <div>
@@ -146,8 +148,6 @@ export function DashboardComponent() {
             </div>
           );
         })}
-
-        {}
       </div>
     </div>
   );

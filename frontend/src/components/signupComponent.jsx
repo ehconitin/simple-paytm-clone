@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import authService from "../services/authService";
 import { useNavigate } from "react-router-dom";
 
@@ -24,6 +24,24 @@ export function SignupComponent() {
       console.log("error");
     }
   }
+  async function getUser() {
+    try {
+      await authService.currentUser().then(
+        (response) => {
+          navigate("/dashboard");
+          window.location.reload();
+        },
+        (error) => {
+          console.log("error");
+        }
+      );
+    } catch (err) {
+      console.log("error");
+    }
+  }
+  useEffect(() => {
+    getUser();
+  });
 
   return (
     <div>

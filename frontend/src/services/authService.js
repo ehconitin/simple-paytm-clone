@@ -44,8 +44,11 @@ const balance = () => {
 };
 
 const filterUsers = (filter) => {
+  const authHeaders = authHeader();
   return axios
-    .get("http://localhost:3000/api/v1/user/bulk?filter=" + filter)
+    .get("http://localhost:3000/api/v1/user/bulk?filter=" + filter, {
+      headers: authHeaders,
+    })
     .then((response) => {
       return response.data;
     });
@@ -72,13 +75,17 @@ const transfer = (to, amount) => {
 
 const currentUser = () => {
   const authHeaders = authHeader();
-  return axios
-    .get("http://localhost:3000/api/v1/user/currentUser", {
-      headers: authHeaders,
-    })
-    .then((response) => {
-      return response.data;
-    });
+  try {
+    return axios
+      .get("http://localhost:3000/api/v1/user/currentUser", {
+        headers: authHeaders,
+      })
+      .then((response) => {
+        return response.data;
+      });
+  } catch (error) {
+    return error;
+  }
 };
 
 const update = (firstName, lastName, password) => {

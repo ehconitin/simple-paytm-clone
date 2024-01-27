@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 
@@ -23,6 +23,24 @@ export function SigninComponent() {
       console.log("error");
     }
   }
+  async function getUser() {
+    try {
+      await authService.currentUser().then(
+        (response) => {
+          navigate("/dashboard");
+          window.location.reload();
+        },
+        (error) => {
+          console.log("error");
+        }
+      );
+    } catch (err) {
+      console.log("error");
+    }
+  }
+  useEffect(() => {
+    getUser();
+  });
   return (
     <div>
       <div className="relative p-4 bg-red-400 bg-opacity-25 flex items-center justify-center  min-h-screen">

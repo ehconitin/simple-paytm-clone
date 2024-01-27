@@ -3,7 +3,7 @@ const zod = require("zod");
 const jwt = require("jsonwebtoken");
 const { User, Account } = require("../db");
 const JWT_SECRET = require("../config");
-
+const { objectId } = require("mongodb");
 const authMiddleware = require("../middleware/middleware");
 
 const router = express.Router();
@@ -111,7 +111,7 @@ router.put("/", authMiddleware, async function (req, res) {
     message: "Updated successfully",
   });
 });
-router.get("/bulk", async function (req, res) {
+router.get("/bulk", authMiddleware, async function (req, res) {
   const filter = req.query.filter || "";
 
   const users = await User.find({
@@ -130,9 +130,13 @@ router.get("/bulk", async function (req, res) {
       },
     ],
   });
+  const currUserId = "new ObjectId('" + req.userId + "')";
 
+  const usersWithoutCurrUser = users.filter((obj) => {
+    return obj._id.toString() !== req.userId;
+  });
   res.json({
-    user: users.map((user) => ({
+    user: usersWithoutCurrUser.map((user) => ({
       username: user.username,
       firstName: user.firstName,
       lastName: user.lastName,
