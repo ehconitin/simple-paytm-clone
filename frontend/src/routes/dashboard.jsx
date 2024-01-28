@@ -5,7 +5,7 @@ import { DBUserComponent } from "../components/dbUserComponent";
 export function Dashboard() {
   return (
     <div>
-      <DashboardComponent />;
+      <DashboardComponent />
     </div>
   );
 }
