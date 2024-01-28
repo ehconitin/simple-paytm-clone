@@ -10,5 +10,3 @@ app.use(express.json());
 app.use("/api/v1", mainRouter);
 
 app.listen(process.env.PORT);
-
-//https://daily-code-web.vercel.app/tracks/43XrfL4n0LgSnTkSB4rO/v25lmvmuWbrznZ7mNtBE
