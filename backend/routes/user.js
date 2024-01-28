@@ -2,9 +2,9 @@ const express = require("express");
 const zod = require("zod");
 const jwt = require("jsonwebtoken");
 const { User, Account } = require("../db");
-const JWT_SECRET = require("../config");
 const { objectId } = require("mongodb");
 const authMiddleware = require("../middleware/middleware");
+const dotenv = require("dotenv");
 
 const router = express.Router();
 
@@ -52,7 +52,7 @@ router.post("/signup", async function (req, res) {
     {
       userId: userId,
     },
-    JWT_SECRET
+    process.env.JWT_SECRET
   );
   res.status(200).json({
     message: "User created successfully",
@@ -80,7 +80,7 @@ router.post("/signin", async function (req, res) {
       {
         userId: checkUser._id,
       },
-      JWT_SECRET
+      process.env.JWT_SECRET
     );
     return res.json({
       token: token,
@@ -130,7 +130,6 @@ router.get("/bulk", authMiddleware, async function (req, res) {
       },
     ],
   });
-  const currUserId = "new ObjectId('" + req.userId + "')";
 
   const usersWithoutCurrUser = users.filter((obj) => {
     return obj._id.toString() !== req.userId;
