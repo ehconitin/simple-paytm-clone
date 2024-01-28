@@ -3,7 +3,7 @@ import authHeader from "./authHeader";
 
 const signup = (username, password, firstName, lastName) => {
   return axios
-    .post("http://localhost:3000/api/v1/user/signup", {
+    .post("https://paytm-like-clone.vercel.app/api/v1/user/signup", {
       username,
       password,
       firstName,
@@ -20,7 +20,7 @@ const signup = (username, password, firstName, lastName) => {
 
 const signin = (username, password) => {
   return axios
-    .post("http://localhost:3000/api/v1/user/signin", {
+    .post("https://paytm-like-clone.vercel.app/api/v1/user/signin", {
       username,
       password,
     })
@@ -35,7 +35,7 @@ const signin = (username, password) => {
 const balance = () => {
   const authHeaders = authHeader();
   return axios
-    .get("http://localhost:3000/api/v1/account/balance", {
+    .get("https://paytm-like-clone.vercel.app/api/v1/account/balance", {
       headers: authHeaders,
     })
     .then((response) => {
@@ -46,9 +46,12 @@ const balance = () => {
 const filterUsers = (filter) => {
   const authHeaders = authHeader();
   return axios
-    .get("http://localhost:3000/api/v1/user/bulk?filter=" + filter, {
-      headers: authHeaders,
-    })
+    .get(
+      "https://paytm-like-clone.vercel.app/api/v1/user/bulk?filter=" + filter,
+      {
+        headers: authHeaders,
+      }
+    )
     .then((response) => {
       return response.data;
     });
@@ -58,7 +61,7 @@ const transfer = (to, amount) => {
   const authHeaders = authHeader();
   return axios
     .post(
-      "http://localhost:3000/api/v1/account/transfer",
+      "https://paytm-like-clone.vercel.app/api/v1/account/transfer",
       {
         to,
         amount,
@@ -77,7 +80,7 @@ const currentUser = () => {
   const authHeaders = authHeader();
   try {
     return axios
-      .get("http://localhost:3000/api/v1/user/currentUser", {
+      .get("https://paytm-like-clone.vercel.app/api/v1/user/currentUser", {
         headers: authHeaders,
       })
       .then((response) => {
@@ -92,7 +95,7 @@ const update = (firstName, lastName, password) => {
   const authHeaders = authHeader();
   return axios
     .put(
-      "http://localhost:3000/api/v1/user/",
+      "https://paytm-like-clone.vercel.app/api/v1/user/",
       {
         firstName,
         lastName,
