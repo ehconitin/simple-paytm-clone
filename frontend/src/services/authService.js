@@ -3,7 +3,7 @@ import authHeader from "./authHeader";
 
 const signup = (username, password, firstName, lastName) => {
   return axios
-    .post("https://paytm-like-clone.vercel.app/api/v1/user/signup", {
+    .post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/signup`, {
       username,
       password,
       firstName,
@@ -20,7 +20,7 @@ const signup = (username, password, firstName, lastName) => {
 
 const signin = (username, password) => {
   return axios
-    .post("https://paytm-like-clone.vercel.app/api/v1/user/signin", {
+    .post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/signin`, {
       username,
       password,
     })
@@ -35,7 +35,7 @@ const signin = (username, password) => {
 const balance = () => {
   const authHeaders = authHeader();
   return axios
-    .get("https://paytm-like-clone.vercel.app/api/v1/account/balance", {
+    .get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/account/balance`, {
       headers: authHeaders,
     })
     .then((response) => {
@@ -47,7 +47,7 @@ const filterUsers = (filter) => {
   const authHeaders = authHeader();
   return axios
     .get(
-      "https://paytm-like-clone.vercel.app/api/v1/user/bulk?filter=" + filter,
+      `${import.meta.env.VITE_BACKEND_URL}/api/v1/user/bulk?filter=` + filter,
       {
         headers: authHeaders,
       }
@@ -61,7 +61,7 @@ const transfer = (to, amount) => {
   const authHeaders = authHeader();
   return axios
     .post(
-      "https://paytm-like-clone.vercel.app/api/v1/account/transfer",
+      `${import.meta.env.VITE_BACKEND_URL}/api/v1/account/transfer`,
       {
         to,
         amount,
@@ -80,7 +80,7 @@ const currentUser = () => {
   const authHeaders = authHeader();
   try {
     return axios
-      .get("https://paytm-like-clone.vercel.app/api/v1/user/currentUser", {
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/currentUser`, {
         headers: authHeaders,
       })
       .then((response) => {
@@ -95,7 +95,7 @@ const update = (firstName, lastName, password) => {
   const authHeaders = authHeader();
   return axios
     .put(
-      "https://paytm-like-clone.vercel.app/api/v1/user/",
+      `${import.meta.env.VITE_BACKEND_URL}/api/v1/user/`,
       {
         firstName,
         lastName,

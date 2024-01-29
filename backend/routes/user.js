@@ -87,7 +87,7 @@ router.post("/signin", async function (req, res) {
     });
   } else {
     return res.status(411).json({
-      message: "Error while logging in",
+      message: "Error while logging, wrong email or password ",
     });
   }
 });

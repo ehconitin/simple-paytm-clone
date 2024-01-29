@@ -18,6 +18,7 @@ export function SignupComponent() {
         },
         (error) => {
           console.log("error");
+          alert(error.response.data.message);
         }
       );
     } catch (err) {
