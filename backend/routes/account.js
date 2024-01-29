@@ -15,7 +15,7 @@ router.get("/balance", authMiddleware, async function (req, res) {
 });
 
 router.post("/transfer", authMiddleware, async function (req, res) {
-  if (amount <= 0) {
+  if (req.body.amount <= 0) {
     return res.status(411).json({
       message: "Amount must be greater than 0",
     });
