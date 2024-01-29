@@ -21,7 +21,7 @@ export default function SendMoneyModal({ id, firstName, lastName }) {
         (error) => {
           console.log("error1");
           if (error) {
-            toast.error("Insufficient Balance");
+            toast.error(error.response.data.message);
           }
         }
       );

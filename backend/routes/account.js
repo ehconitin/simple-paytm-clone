@@ -15,7 +15,13 @@ router.get("/balance", authMiddleware, async function (req, res) {
 });
 
 router.post("/transfer", authMiddleware, async function (req, res) {
+  if (amount <= 0) {
+    return res.status(411).json({
+      message: "Amount must be greater than 0",
+    });
+  }
   const session = await mongoose.startSession();
+
   session.startTransaction();
   const to = req.body.to;
   const amount = req.body.amount;
