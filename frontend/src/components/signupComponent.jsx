@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import authService from "../services/authService";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export function SignupComponent() {
   const [username, setUsername] = useState("");
@@ -18,7 +19,8 @@ export function SignupComponent() {
         },
         (error) => {
           console.log("error");
-          alert(error.response.data.message);
+
+          toast.error(error.response.data.message);
         }
       );
     } catch (err) {

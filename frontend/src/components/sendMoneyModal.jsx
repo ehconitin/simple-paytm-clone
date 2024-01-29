@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import authService from "../services/authService";
-import Successful from "./successful";
-import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function SendMoneyModal({ id, firstName, lastName }) {
   const [showModal, setShowModal] = useState(false);
@@ -12,14 +11,17 @@ export default function SendMoneyModal({ id, firstName, lastName }) {
       await authService.transfer(id, amount).then(
         (response) => {
           if (response) {
-            alert("Payment successful");
+            toast.success(`₹ ${amount} paid`);
           }
-          window.location.reload();
+
+          setInterval(() => {
+            window.location.reload();
+          }, 2000);
         },
         (error) => {
           console.log("error1");
           if (error) {
-            alert("Insufficient Balance");
+            toast.error("Insufficient Balance");
           }
         }
       );

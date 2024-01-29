@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import authService from "../services/authService";
+import toast from "react-hot-toast";
 
 export function SigninComponent() {
   const [username, setUsername] = useState("");
@@ -17,8 +18,7 @@ export function SigninComponent() {
         },
         (error) => {
           console.log("error");
-
-          alert(error.response.data.message);
+          toast.error(error.response.data.message);
         }
       );
     } catch (err) {
